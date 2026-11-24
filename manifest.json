@@ -1,0 +1,25 @@
+{
+  "name": "Folio - Semua keuanganmu, kami yang atur.",
+  "short_name": "Folio",
+  "description": "Semua keuanganmu, kami yang atur.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#070e1c",
+  "theme_color": "#070e1c",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "Foliologo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "Foliologo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

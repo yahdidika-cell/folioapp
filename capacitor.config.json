@@ -1,0 +1,19 @@
+{
+  "appId": "id.my.foliosmart.app",
+  "appName": "Folio",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true
+  },
+  "android": {
+    "backgroundColor": "#070e1c",
+    "allowMixedContent": true,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": true
+  },
+  "plugins": {
+    "Network": {}
+  }
+}

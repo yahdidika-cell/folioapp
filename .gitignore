@@ -1,0 +1,44 @@
+# Dependensi & Packages
+node_modules/
+
+# Cache & Build Android Native
+.gradle/
+android/.gradle/
+android/build/
+android/app/build/
+android/.idea/
+android/*.iml
+android/app/*.iml
+local.properties
+*.apk
+*.aab
+
+# Folder generated Capacitor (dibuat otomatis via node scripts/build-www.js)
+www/
+
+# File Rahasia & Kredensial Pribadi (JANGAN DI-PUSH!)
+pw.txt
+*.backup.js
+
+# Data Cadangan / Backup Pribadi
+backup_*.json
+backup_*.csv
+
+# File Scratch & Temporary
+scratch/
+.system_generated/
+
+# Aset Mentah Desain & Screenshot Internal
+Screenshot_*.jpeg
+Screenshot_*.png
+DuitKu Finance Dashboard UI Mockup.png
+Folio_App_Icon_b64.txt
+Folio — Intro Website.html
+code.gs
+setup.gs
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/

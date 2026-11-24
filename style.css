@@ -1,0 +1,677 @@
+/**
+ * ============================================================================
+ * FOLIO - STYLE.CSS
+ * File Stylesheet Terpusat Aplikasi Keuangan Folio
+ * Mencakup tema global, night mode (dark theme), animasi splash screen & komponen UI
+ * ============================================================================
+ */
+
+html {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  height: 100%;
+  background-color: #070e1c; /* Cegah blank putih di safe area & overscroll iPhone */
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: #070e1c; /* Default gelap agar layar intro & login seamless */
+}
+
+/* Background dasbor setelah login berhasil */
+body:not(.on-login) {
+  background-color: #f1f5f9;
+}
+html:not(.on-login) {
+  background-color: #f1f5f9;
+}
+html.dark:not(.on-login),
+html.dark:not(.on-login) body {
+  background-color: #0b1329 !important;
+}
+
+html.on-login, 
+html.on-login body,
+body.on-login {
+  background-color: #070e1c !important;
+}
+
+    /* Khusus touch screen mobile */
+    @media (pointer: coarse) {
+      body {
+        touch-action: pan-y;
+      }
+    }
+
+    /* =========================================================================
+       NIGHT MODE (DARK THEME) STYLES
+       ========================================================================= */
+    html.dark, html.dark body {
+      background-color: #0b1329 !important;
+      color: #e2e8f0 !important;
+    }
+    html.dark #app-container {
+      background-color: #0b1329 !important;
+    }
+    html.dark main {
+      background-color: #0b1329 !important;
+    }
+    html.dark aside {
+      background-color: #070e1c !important;
+      border-right: 1px solid #1e293b;
+    }
+    html.dark .bg-white {
+      background-color: #131f37 !important;
+      color: #f1f5f9;
+      border-color: #1e2e4a !important;
+    }
+    /* Tangani semua varian background slate (termasuk opacity /80, /70, dll) */
+    html.dark .bg-slate-50, 
+    html.dark .bg-slate-100,
+    html.dark [class*="bg-slate-50"],
+    html.dark [class*="bg-slate-100"] {
+      background-color: #1a2744 !important;
+      color: #cbd5e1 !important;
+      border-color: #243556 !important;
+    }
+    /* Kotak Nominal Cicilan di Night Mode */
+    html.dark .cicilan-nominal-box,
+    html.dark div[class*="bg-slate-50/80"] {
+      background-color: #0f182c !important;
+      border-color: #1e2e4a !important;
+    }
+    html.dark .cicilan-nominal-box span,
+    html.dark div[class*="bg-slate-50/80"] span {
+      color: #cbd5e1;
+    }
+    html.dark .cicilan-nominal-box span.font-bold,
+    html.dark div[class*="bg-slate-50/80"] span.font-bold {
+      color: #f8fafc;
+    }
+    /* Tangani section konversi crypto agar tidak silau di dark mode */
+    html.dark #crypto-rate-section,
+    html.dark [class*="from-amber-50/"] {
+      background-color: #131f37 !important;
+      background-image: none !important;
+      border-color: #1e2e4a !important;
+    }
+    html.dark #crypto-rate-section p {
+      color: #94a3b8 !important;
+    }
+    /* Soft tinted backgrounds untuk badges & icons di dark mode */
+    html.dark .bg-emerald-50, html.dark [class*="bg-emerald-50"] {
+      background-color: rgba(16, 185, 129, 0.15) !important;
+      border-color: rgba(16, 185, 129, 0.3) !important;
+    }
+    html.dark .bg-rose-50, html.dark [class*="bg-rose-50"] {
+      background-color: rgba(244, 63, 94, 0.15) !important;
+      border-color: rgba(244, 63, 94, 0.3) !important;
+    }
+    html.dark .bg-amber-50, html.dark [class*="bg-amber-50/"] {
+      background-color: rgba(245, 158, 11, 0.15) !important;
+      border-color: rgba(245, 158, 11, 0.3) !important;
+    }
+    html.dark .bg-blue-50, html.dark [class*="bg-blue-50"] {
+      background-color: rgba(37, 99, 235, 0.15) !important;
+      border-color: rgba(37, 99, 235, 0.3) !important;
+    }
+    html.dark .bg-indigo-50, html.dark [class*="bg-indigo-50"] {
+      background-color: rgba(99, 102, 241, 0.15) !important;
+      border-color: rgba(99, 102, 241, 0.3) !important;
+    }
+    html.dark .border-slate-100, html.dark .border-slate-200 {
+      border-color: #1e2e4a !important;
+    }
+    html.dark .text-slate-900, html.dark .text-slate-800 {
+      color: #f8fafc !important;
+    }
+    html.dark .text-slate-700, html.dark .text-slate-600 {
+      color: #cbd5e1 !important;
+    }
+    html.dark .text-slate-500 {
+      color: #cbd5e1 !important;
+    }
+    html.dark .text-slate-400 {
+      color: #94a3b8 !important;
+    }
+    html.dark #page-title {
+      color: #f8fafc !important;
+    }
+    html.dark #page-subtitle {
+      color: #94a3b8 !important;
+    }
+    html.dark input, html.dark select, html.dark textarea {
+      background-color: #0f172a !important;
+      color: #f8fafc !important;
+      border-color: #334155 !important;
+    }
+    html.dark input::placeholder, html.dark textarea::placeholder {
+      color: #64748b !important;
+    }
+    html.dark nav.fixed.bottom-0 {
+      background-color: rgba(11, 19, 41, 0.95) !important;
+      border-color: #1e2e4a !important;
+    }
+    html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+      border-color: #1e2e4a !important;
+    }
+    html.dark div[id^="modal-"] > div {
+      background-color: #131f37 !important;
+      color: #f8fafc !important;
+      border-color: #1e2e4a !important;
+    }
+
+    /* Tampilan Layar Login Khusus Mode Malam */
+    html.dark #login-card-container {
+      background-color: rgba(17, 28, 56, 0.95) !important;
+      border-color: #1e2e4a !important;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85) !important;
+    }
+    html.dark #login-card-container #auth-title {
+      color: #f8fafc !important;
+    }
+    html.dark #login-card-container #auth-subtitle {
+      color: #94a3b8 !important;
+    }
+    html.dark #login-card-container label {
+      color: #cbd5e1 !important;
+    }
+    html.dark #login-card-container input:not([type="checkbox"]) {
+      background-color: #0b1326 !important;
+      border-color: #1e2e4a !important;
+      color: #f8fafc !important;
+    }
+    html.dark #login-card-container input:not([type="checkbox"]):focus {
+      border-color: #3b82f6 !important;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25) !important;
+    }
+    html.dark #login-card-container .text-slate-600,
+    html.dark #login-card-container .text-slate-500 {
+      color: #94a3b8 !important;
+    }
+    
+    /* Layar Login & Pratinjau Fitur Scrollable */
+    #view-login {
+      position: relative !important;
+      min-height: 100vh !important;
+      min-height: 100dvh !important;
+      width: 100% !important;
+      background-color: #070e1c !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      padding-top: calc(clamp(96px, 16vh, 160px) + env(safe-area-inset-top, 0px)) !important;
+      padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px)) !important;
+      padding-left: calc(16px + env(safe-area-inset-left, 0px)) !important;
+      padding-right: calc(16px + env(safe-area-inset-right, 0px)) !important;
+      box-sizing: border-box !important;
+      z-index: 40;
+    }
+
+    #view-login.hidden {
+      display: none !important;
+    }
+    
+    #view-login input, 
+    #view-login button, 
+    #view-login a {
+      touch-action: manipulation !important;
+    }
+    
+    /* Izinkan seleksi teks pada input form & cegah auto-zoom iOS Safari */
+    input, textarea, select {
+      -webkit-user-select: text;
+      user-select: text;
+    }
+    
+    @media screen and (max-width: 768px) {
+      input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+        font-size: 16px !important;
+      }
+    }
+
+    /* =========================================================================
+       OPTIMASI KHUSUS MOBILE & IPHONE 13 (Viewport 390px - Skala Proporsional)
+       ========================================================================= */
+    @media screen and (max-width: 640px) {
+      /* Skala dasar diturunkan ~9.5% agar proporsi pas, tidak terasa kebesaran */
+      html {
+        font-size: 14.5px;
+      }
+
+      /* Area konten utama: berikan space atas yang lega di mobile agar tidak sempit */
+      main {
+        padding-left: max(1rem, env(safe-area-inset-left)) !important;
+        padding-right: max(1rem, env(safe-area-inset-right)) !important;
+        padding-top: max(1.75rem, calc(env(safe-area-inset-top) + 1.25rem)) !important;
+        padding-bottom: calc(5.5rem + env(safe-area-inset-bottom)) !important;
+      }
+
+      /* Bottom Navigation Bar pas di atas garis Home Indicator iPhone */
+      nav.fixed.bottom-0 {
+        padding-bottom: max(0.6rem, env(safe-area-inset-bottom)) !important;
+      }
+
+      /* Sudut lengkung kartu lebih proporsional & modern di layar 390px */
+      .rounded-3xl {
+        border-radius: 1.25rem !important;
+      }
+
+      /* Semua dialog modal responsif, nyaman diakses, dan tidak overflow */
+      div[id^="modal-"] > div {
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+    
+    
+    /* Warna judul halaman di desktop & mobile */
+    #page-title {
+      color: #0f172a !important;
+    }
+    #page-subtitle {
+      color: #64748b !important;
+    }
+    html.dark #page-title {
+      color: #f8fafc !important;
+    }
+    html.dark #page-subtitle {
+      color: #94a3b8 !important;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    
+    .nav-item.active {
+      background-color: #2563eb;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    
+    .mobile-tab.active {
+      color: #2563eb;
+      font-weight: 700;
+    }
+    
+    /* Mencegah input date memanjang / melonjong ke kanan di layar mobile */
+    input[type="date"] {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-color: #ffffff;
+    }
+    input[type="date"]::-webkit-date-and-time-value {
+      text-align: left;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      padding-left: 4px;
+      margin-right: 0;
+    }
+
+    /* Subtle pulse animation for sync */
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    .anim-pulse {
+      animation: pulse-subtle 1.5s infinite ease-in-out;
+    }
+
+/* =========================================================================
+   INTRO SPLASH SCREEN & ANIMATIONS
+   ========================================================================= */
+
+html.fi-lock, html.fi-lock body { overflow: hidden; }
+    #fi-intro {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100vw; height: 100vh; height: 100dvh;
+      z-index: 99999;
+      background: #070e1c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: transform .85s cubic-bezier(.76,0,.24,1), opacity .85s ease;
+      -webkit-transition: -webkit-transform .85s cubic-bezier(.76,0,.24,1), opacity .85s ease;
+    }
+    #fi-intro.fi-out {
+      transform: translateY(-100%);
+      -webkit-transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    #fi-intro .fi-lock {
+      display: flex;
+      align-items: center;
+      font-size: clamp(38px, 9vw, 80px);
+    }
+    #fi-intro .fi-tile {
+      width: 2.1em;
+      height: 2.1em;
+      flex-shrink: 0;
+      display: block;
+      opacity: 0;
+      transform: scale(.5) rotate(-8deg);
+      -webkit-transform: scale(.5) rotate(-8deg);
+      will-change: transform, opacity;
+    }
+    #fi-intro .fi-wipe {
+      transform-origin: 300px center;
+      -webkit-transform-origin: 300px center;
+      transform: scaleX(0);
+      -webkit-transform: scaleX(0);
+      will-change: transform;
+    }
+    #fi-intro .fi-word {
+      display: flex;
+      overflow: hidden;
+      max-width: 0;
+      padding: .06em .05em .06em 0;
+      font-family: Poppins, 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 1.55em;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      will-change: max-width;
+    }
+    #fi-intro .fi-word i {
+      font-style: normal;
+      display: inline-block;
+      transform: translateY(110%);
+      -webkit-transform: translateY(110%);
+      will-change: transform;
+    }
+    #fi-intro .fi-bar {
+      position: absolute;
+      left: 50%;
+      bottom: calc(10vh + env(safe-area-inset-bottom, 0px));
+      width: 120px;
+      height: 3px;
+      margin-left: -60px;
+      border-radius: 3px;
+      background: rgba(255,255,255,.14);
+      overflow: hidden;
+    }
+    #fi-intro .fi-bar b {
+      display: block;
+      height: 100%;
+      background: #3b82f6;
+      transform: scaleX(0);
+      -webkit-transform: scaleX(0);
+      transform-origin: left;
+      -webkit-transform-origin: left;
+    }
+    #fi-intro.fi-run .fi-tile {
+      animation: fi-pop .8s .15s cubic-bezier(.34,1.56,.64,1) forwards;
+      -webkit-animation: fi-pop .8s .15s cubic-bezier(.34,1.56,.64,1) forwards;
+    }
+    #fi-intro.fi-run .fi-w1 {
+      animation: fi-wipe .65s .65s cubic-bezier(.65,0,.35,1) forwards;
+      -webkit-animation: fi-wipe .65s .65s cubic-bezier(.65,0,.35,1) forwards;
+    }
+    #fi-intro.fi-run .fi-w2 {
+      animation: fi-wipe .65s .85s cubic-bezier(.65,0,.35,1) forwards;
+      -webkit-animation: fi-wipe .65s .85s cubic-bezier(.65,0,.35,1) forwards;
+    }
+    #fi-intro.fi-run .fi-word {
+      animation: fi-grow .85s 1.3s cubic-bezier(.65,0,.35,1) forwards;
+      -webkit-animation: fi-grow .85s 1.3s cubic-bezier(.65,0,.35,1) forwards;
+    }
+    #fi-intro.fi-run .fi-word i {
+      animation: fi-up .55s cubic-bezier(.2,.8,.2,1) forwards;
+      -webkit-animation: fi-up .55s cubic-bezier(.2,.8,.2,1) forwards;
+      animation-delay: calc(1.35s + var(--i) * .06s);
+      -webkit-animation-delay: calc(1.35s + var(--i) * .06s);
+    }
+    #fi-intro.fi-run .fi-bar b {
+      animation: fi-wipe 2.8s .1s linear forwards;
+      -webkit-animation: fi-wipe 2.8s .1s linear forwards;
+    }
+    #fi-intro .fi-right {
+      position: relative;
+      transform: translateY(-.05em);
+      -webkit-transform: translateY(-.05em);
+    }
+    #fi-intro .fi-note {
+      position: absolute;
+      left: 2.2em;
+      top: 100%;
+      margin: -0.9em 0 0;
+      white-space: nowrap;
+      font-family: Poppins, 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-weight: 500;
+      font-size: clamp(10px, 2.5vw, 15px);
+      line-height: 1.4;
+      color: #cbd5e1;
+      opacity: 0;
+      transform: translateY(8px);
+      -webkit-transform: translateY(8px);
+      will-change: transform, opacity;
+    }
+    #fi-intro.fi-run .fi-note {
+      animation: fi-note .55s 2.05s cubic-bezier(.2,.8,.2,1) forwards;
+      -webkit-animation: fi-note .55s 2.05s cubic-bezier(.2,.8,.2,1) forwards;
+    }
+
+    @-webkit-keyframes fi-note { to { opacity: 1; -webkit-transform: none; transform: none; } }
+    @keyframes fi-note { to { opacity: 1; -webkit-transform: none; transform: none; } }
+
+    @-webkit-keyframes fi-pop { to { opacity: 1; -webkit-transform: none; transform: none; } }
+    @keyframes fi-pop { to { opacity: 1; -webkit-transform: none; transform: none; } }
+
+    @-webkit-keyframes fi-wipe { to { -webkit-transform: scaleX(1); transform: scaleX(1); } }
+    @keyframes fi-wipe { to { -webkit-transform: scaleX(1); transform: scaleX(1); } }
+
+    @-webkit-keyframes fi-grow { to { max-width: 3.2em; margin-left: .3em; } }
+    @keyframes fi-grow { to { max-width: 3.2em; margin-left: .3em; } }
+
+    @-webkit-keyframes fi-up { to { -webkit-transform: none; transform: none; } }
+    @keyframes fi-up { to { -webkit-transform: none; transform: none; } }
+
+/* =========================================================================
+   KELAS BARU (f-*) PENGGANTI INLINE STYLE ATTRIBUTES
+   ========================================================================= */
+
+/* Pola background titik radial untuk hero/login */
+.f-grid-dots {
+  background-image: radial-gradient(#60a5fa 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+}
+
+/* Lebar penuh dan box-sizing untuk input modal pada berbagai ukuran layar */
+.f-input-full {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* CSS variable index untuk animasi huruf Folio pada splash screen */
+.f-letter-0 { --i: 0; }
+.f-letter-1 { --i: 1; }
+.f-letter-2 { --i: 2; }
+.f-letter-3 { --i: 3; }
+.f-letter-4 { --i: 4; }
+
+
+/* Sembunyikan badge jumlah desktop sidebar agar bersih dan konsisten */
+#nav-installments-badge,
+#nav-wishlist-badge,
+#nav-crypto-badge {
+  display: none !important;
+}
+
+/* Sembunyikan scrollbar untuk carousel & container scrollable */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* ==========================================================================
+   INDIKATOR STATUS KONEKSI (NET-PILL)
+   ========================================================================== */
+.net-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+  user-select: none;
+  line-height: 1.2;
+}
+
+.net-pill--online {
+  background: #ecfdf5;
+  color: #059669;
+  border-color: #a7f3d0;
+}
+.dark .net-pill--online,
+html.dark .net-pill--online {
+  background: rgba(6, 78, 59, 0.4);
+  color: #34d399;
+  border-color: rgba(6, 95, 70, 0.5);
+}
+
+.net-pill--offline {
+  background: #fffbeb;
+  color: #d97706;
+  border-color: #fde68a;
+}
+.dark .net-pill--offline,
+html.dark .net-pill--offline {
+  background: rgba(120, 53, 15, 0.4);
+  color: #fbbf24;
+  border-color: rgba(180, 83, 9, 0.5);
+}
+
+.net-pill--syncing {
+  background: #eff6ff;
+  color: #2563eb;
+  border-color: #bfdbfe;
+}
+.dark .net-pill--syncing,
+html.dark .net-pill--syncing {
+  background: rgba(30, 58, 138, 0.4);
+  color: #60a5fa;
+  border-color: rgba(30, 64, 175, 0.5);
+}
+
+.net-pill__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  display: inline-block;
+}
+.net-pill--online .net-pill__dot {
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+  animation: net-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.net-pill--offline .net-pill__dot {
+  background: #f59e0b;
+}
+
+.net-pill__spin {
+  width: 10px;
+  height: 10px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: net-spin 0.75s linear infinite;
+}
+
+.net-pill__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  background: rgba(0, 0, 0, 0.12);
+  margin-left: 2px;
+}
+.dark .net-pill__count,
+html.dark .net-pill__count {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.net-pill__text--short {
+  display: none;
+}
+@media (max-width: 480px) {
+  .net-pill__text--long {
+    display: none;
+  }
+  .net-pill__text--short {
+    display: inline;
+  }
+}
+
+@keyframes net-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.9); }
+}
+
+@keyframes net-spin {
+  to { transform: rotate(360deg); }
+}
+
+
