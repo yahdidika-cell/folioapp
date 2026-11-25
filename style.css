@@ -6,9 +6,32 @@
  * ============================================================================
  */
 
-/* Critical utility classes */
-.hidden {
+/* Critical utility classes (Hanya sembunyikan container view & modal yang tidak aktif) */
+#app-container.hidden,
+#login-card-container.hidden,
+[id^="view-"].hidden,
+[id^="modal-"].hidden {
   display: none !important;
+}
+
+/* =========================================================================
+   RESPONSIVE DESKTOP LAYOUT (Pastikan Sidebar, Header, & Kolom Kanan Tampil)
+   ========================================================================= */
+@media (min-width: 768px) {
+  aside#desktop-sidebar,
+  #app-container > aside {
+    display: flex !important;
+  }
+  #header-title-box.md\:block {
+    display: block !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  #dashboard-right-col,
+  .lg\:col-span-4.lg\:flex {
+    display: flex !important;
+  }
 }
 
 html {

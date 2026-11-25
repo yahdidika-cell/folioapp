@@ -5,12 +5,13 @@
  * ============================================================================
  */
 
-const CACHE_NAME = 'folio-cache-v2';
+const CACHE_NAME = 'folio-cache-v3';
 
 const PRECACHE_ASSETS = [
   './',
   './index.html',
   './style.css',
+  './style.css?v=2.5',
   './config.js',
   './supabase_adapter.js',
   './manifest.json',
