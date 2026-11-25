@@ -1112,23 +1112,23 @@
     <!-- =================================================================== -->
     <div id="view-crypto" class="hidden space-y-6">
 
-      <!-- Catatan: Jika tidak menggunakan crypto abaikan fitur ini -->
-      <div class="bg-amber-50 dark:bg-amber-950/40 border border-amber-200/90 dark:border-amber-700/50 rounded-2xl p-4 flex items-start gap-3 shadow-xs">
-        <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
-          <i data-lucide="info" class="w-4 h-4"></i>
+      <!-- Catatan: Dibuat jelas dan sangat mudah terbaca dengan kontras tinggi -->
+      <div id="crypto-note-banner" class="bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/30 dark:border-amber-500/40 rounded-2xl p-4 flex items-start gap-3.5 shadow-xs">
+        <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+          <i data-lucide="info" class="w-5 h-5"></i>
         </div>
-        <div>
-          <h4 class="text-xs font-bold text-amber-900 dark:text-amber-200 uppercase tracking-wide">Catatan</h4>
-          <p class="text-xs text-amber-800 dark:text-amber-300/90 mt-0.5 leading-relaxed font-medium">
+        <div class="min-w-0 flex-1">
+          <h4 class="text-xs font-extrabold text-amber-800 dark:text-amber-300 uppercase tracking-wider">Catatan Penting</h4>
+          <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-100 mt-1 leading-relaxed font-medium">
             Jika tidak menggunakan crypto, abaikan fitur ini. Seluruh pencatatan saldo dan kas utama Anda tetap aman dan berjalan normal.
           </p>
         </div>
       </div>
 
-      <!-- 1. KARTU SAKELAR ON / OFF FITUR CRYPTO (Hanya 1 Sakelar) -->
+      <!-- 1. KARTU SAKELAR ON / OFF FITUR CRYPTO -->
       <div class="bg-white dark:bg-slate-800 rounded-3xl p-5 md:p-6 border border-slate-100 dark:border-slate-700 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div class="flex items-center gap-3.5">
-          <div class="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-600 flex items-center justify-center shrink-0">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
             <i data-lucide="coins" class="w-6 h-6"></i>
           </div>
           <div>
@@ -1136,7 +1136,7 @@
               <h3 class="text-base font-bold text-slate-900 dark:text-white">Crypto Currency</h3>
               <span id="crypto-status-pill" class="hidden"></span>
             </div>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            <p id="crypto-feature-desc" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
               Input pemasukan dari Binance, Bybit, OKX, Bitget dalam USD dengan konversi otomatis ke Rupiah.
             </p>
           </div>
@@ -1147,141 +1147,147 @@
           <span class="text-xs font-bold text-slate-700 dark:text-slate-200">Sakelar Fitur:</span>
           <label class="relative inline-flex items-center cursor-pointer">
             <input type="checkbox" id="crypto-feature-toggle" class="sr-only peer" onchange="handleCryptoToggleSwitch(this.checked)">
-            <div class="w-12 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500 shadow-inner"></div>
+            <div class="w-12 h-6 bg-slate-300 dark:bg-slate-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500 shadow-inner"></div>
           </label>
         </div>
       </div>
 
-      <!-- Banner Peringatan Saat Fitur OFF (Disembunyikan agar hanya sakelar yang jadi indikator) -->
-      <div id="crypto-off-warning-banner" class="hidden"></div>
+      <!-- State saat Sakelar OFF: Menjelaskan bahwa fitur sedang nonaktif (Kaya total pemasukan USD, riwayat dll disembunyikan) -->
+      <div id="crypto-off-info-state" class="hidden bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-100 dark:border-slate-700 shadow-sm text-center">
+        <div class="w-16 h-16 rounded-2xl bg-amber-500/10 dark:bg-amber-500/15 text-amber-500 dark:text-amber-400 flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="shield-check" class="w-8 h-8"></i>
+        </div>
+        <h4 class="text-base font-bold text-slate-900 dark:text-white">Fitur Crypto Sedang Dinonaktifkan</h4>
+        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-300 max-w-md mx-auto mt-2 leading-relaxed">
+          Seluruh modul crypto exchange (total pemasukan, nilai konversi, dan riwayat) disembunyikan. Geser <b>Sakelar Fitur</b> di atas jika ingin mengaktifkan dan mencatat transaksi crypto.
+        </p>
+      </div>
 
-      <!-- 2. RINGKASAN TOTAL PEMASUKAN CRYPTO (Diletakkan di bagian atas) -->
-      <!-- 3. TOP CRYPTO METRIC CARDS -->
-      <div id="crypto-metrics-section" class="grid grid-cols-1 md:grid-cols-3 gap-6 transition-all">
+      <!-- WRAPPER KONTEN FITUR CRYPTO (HANYA MUNCUL KETIKA SAKELAR ON) -->
+      <div id="crypto-content-wrapper" class="space-y-6 transition-all duration-200">
 
-        <!-- Card 1: Total USD -->
-        <div class="bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-3xl p-6 shadow-lg shadow-amber-500/15">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-semibold text-amber-100">Total Pemasukan Crypto (USD)</span>
-            <div class="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center">
-              <i data-lucide="dollar-sign" class="w-4 h-4 text-white"></i>
+        <!-- 2. RINGKASAN TOTAL PEMASUKAN CRYPTO (Diletakkan di bagian atas, USD dan Rupiah disatukan dengan =) -->
+        <div id="crypto-metrics-section" class="grid grid-cols-1 lg:grid-cols-3 gap-6 transition-all">
+
+          <!-- Card 1: Total Pemasukan Crypto (USD & IDR Disatukan Menggunakan tanda =) -->
+          <div class="lg:col-span-2 bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-3xl p-6 shadow-lg shadow-amber-500/15 flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-100">Total Pemasukan Crypto</span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/20 text-white">Akumulasi Semua Exchange</span>
+              </div>
+              <div class="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center">
+                <i data-lucide="coins" class="w-4 h-4 text-white"></i>
+              </div>
+            </div>
+            <div class="my-1">
+              <div class="flex items-baseline flex-wrap gap-2 sm:gap-3">
+                <h3 id="crypto-stat-usd" class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">$ 0.00</h3>
+                <span class="text-xl sm:text-2xl font-black text-amber-200">=</span>
+                <h3 id="crypto-stat-idr" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-amber-100">Rp 0</h3>
+              </div>
+              <p class="text-xs text-amber-100/90 mt-1.5 font-medium">Dihitung otomatis berdasarkan kurs konversi saat transaksi dicatat</p>
             </div>
           </div>
-          <h3 id="crypto-stat-usd" class="text-3xl font-extrabold tracking-tight">$ 0.00</h3>
-          <p class="text-xs text-amber-100/80 mt-1">Akumulasi semua exchange</p>
-        </div>
 
-        <!-- Card 2: Total IDR Equivalent -->
-        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Nilai Konversi Rupiah (IDR)</span>
-            <div class="w-8 h-8 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-              <i data-lucide="calculator" class="w-4 h-4"></i>
+          <!-- Card 2: Kurs Konversi Default -->
+          <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm flex flex-col justify-between">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Kurs Konversi Default</span>
+              <button type="button" id="btn-crypto-card-live" onclick="fetchLatestLiveRate()" title="Ambil Kurs Live" class="text-xs text-blue-600 dark:text-blue-400 font-bold hover:underline flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
+                <i data-lucide="refresh-cw" class="w-3 h-3"></i> Cek Live
+              </button>
+            </div>
+            <div>
+              <div class="flex items-baseline gap-2">
+                <span class="text-xs text-slate-400 font-bold">1 USD =</span>
+                <span id="crypto-current-rate" class="text-2xl font-extrabold text-blue-600 dark:text-blue-400">Rp 18.276</span>
+              </div>
+              <p id="crypto-rate-source" class="text-[11px] text-slate-400 mt-1">Rate default sistem</p>
             </div>
           </div>
-          <h3 id="crypto-stat-idr" class="text-3xl font-extrabold text-slate-900 dark:text-white">Rp 0</h3>
-          <p class="text-xs text-slate-400 mt-1">Dihitung berdasarkan kurs input</p>
+
         </div>
 
-        <!-- Card 3: Rate Konversi Pengaturan -->
-        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm flex flex-col justify-between">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Kurs Konversi Default</span>
-            <button type="button" id="btn-crypto-card-live" onclick="fetchLatestLiveRate()" title="Ambil Kurs Live" class="text-xs text-blue-600 font-bold hover:underline flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed">
-              <i data-lucide="refresh-cw" class="w-3 h-3"></i> Cek Live
+        <!-- 3. ACTION BAR: EXCHANGE DIDUKUNG & CATAT PEMASUKAN CRYPTO (Dinaikkan langsung ke atas) -->
+        <div id="crypto-action-bar" class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all">
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Exchange Didukung:</span>
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <span class="px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-xs font-bold border border-amber-200 dark:border-amber-800">Binance</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold">Bybit</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold">OKX</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold">Bitget</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold">Tokocrypto</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold">Indodax</span>
+            </div>
+          </div>
+
+          <button type="button" id="btn-open-add-crypto" onclick="handleOpenAddCryptoClick()" class="flex items-center gap-2 px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow-md shadow-amber-500/20 transition self-end md:self-auto cursor-pointer">
+            <i data-lucide="plus-circle" class="w-4 h-4"></i>
+            <span id="btn-open-add-crypto-label">+ Catat Pemasukan Crypto</span>
+          </button>
+        </div>
+
+        <!-- 4. RIWAYAT PEMASUKAN EXCHANGE TABLE -->
+        <div id="crypto-table-container" class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden transition-all">
+          <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">Riwayat Pemasukan Exchange</h4>
+            <span id="crypto-count-badge" class="text-xs text-slate-500 dark:text-slate-400">0 transaksi tercatat</span>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-slate-100 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-750 text-slate-500 dark:text-slate-400 text-[11px] uppercase tracking-wider font-semibold">
+                  <th class="py-3.5 px-6">Tanggal</th>
+                  <th class="py-3.5 px-6">Exchange & Koin</th>
+                  <th class="py-3.5 px-6">Sumber</th>
+                  <th class="py-3.5 px-6 text-right">Jumlah USD</th>
+                  <th class="py-3.5 px-6 text-right">Rate Kurs</th>
+                  <th class="py-3.5 px-6 text-right">Hasil Konversi IDR</th>
+                  <th class="py-3.5 px-6 text-center">Status</th>
+                  <th class="py-3.5 px-6 text-center">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="crypto-table-body" class="divide-y divide-slate-100 dark:divide-slate-700 text-sm">
+                <tr>
+                  <td colspan="8" class="py-8 text-center text-slate-400">Memuat data crypto...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 5. BOX PENGATURAN KURS USD KE IDR -->
+        <div id="crypto-rate-section" class="bg-gradient-to-r from-amber-50/70 via-white to-blue-50/40 dark:from-slate-800 dark:via-slate-800 dark:to-slate-800 rounded-3xl p-5 md:p-6 border border-amber-200/80 dark:border-slate-700 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4 transition-all">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-700 dark:text-amber-400 flex items-center justify-center">
+                <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
+              </div>
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white">Atur Kurs Konversi Default (USD → IDR)</h4>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+              Kurs default yang otomatis digunakan saat mencatat transaksi crypto baru.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2.5">
+            <div class="relative flex-1 sm:w-52">
+              <span class="absolute left-3.5 top-2.5 text-xs font-bold text-slate-400">Rp</span>
+              <input type="text" inputmode="numeric" id="crypto-page-rate-input" placeholder="18.276" oninput="formatRupiahInput(this)" class="w-full pl-10 pr-3 py-2 rounded-xl border border-amber-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 disabled:cursor-not-allowed">
+            </div>
+            <button type="button" id="btn-crypto-save-rate" onclick="saveCryptoPageRate()" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl shadow-sm transition active:scale-95 flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>Simpan Kurs</span>
+            </button>
+            <button type="button" id="btn-crypto-live-rate" onclick="fetchLatestLiveRate(true)" class="px-3.5 py-2 bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-bold text-xs rounded-xl transition flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer" title="Ambil kurs live USD/IDR dari API">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-amber-600 dark:text-amber-400"></i>
+              <span>Cek Kurs Live</span>
             </button>
           </div>
-          <div>
-            <div class="flex items-baseline gap-2">
-              <span class="text-xs text-slate-400 font-bold">1 USD =</span>
-              <span id="crypto-current-rate" class="text-2xl font-extrabold text-blue-600">Rp 16.250</span>
-            </div>
-            <p id="crypto-rate-source" class="text-[11px] text-slate-400 mt-1">Rate default sistem</p>
-          </div>
         </div>
 
-      </div>
-
-      <!-- 3. ACTION BAR: EXCHANGE DIDUKUNG & CATAT PEMASUKAN CRYPTO -->
-      <!-- 4. ACTION BAR: ADD CRYPTO INCOME & EXCHANGE BADGES -->
-      <div id="crypto-action-bar" class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-100 dark:border-slate-700 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all">
-        <div class="flex items-center gap-3">
-          <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Exchange Didukung:</span>
-          <div class="flex items-center gap-1.5 flex-wrap">
-            <span class="px-2.5 py-1 rounded-lg bg-amber-50 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-xs font-bold border border-amber-200 dark:border-amber-800">Binance</span>
-            <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold">Bybit</span>
-            <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold">OKX</span>
-            <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold">Bitget</span>
-            <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold">Tokocrypto</span>
-            <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold">Indodax</span>
-          </div>
-        </div>
-
-        <button type="button" id="btn-open-add-crypto" onclick="handleOpenAddCryptoClick()" class="flex items-center gap-2 px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow-md shadow-amber-500/20 transition self-end md:self-auto">
-          <i data-lucide="plus-circle" class="w-4 h-4"></i>
-          <span id="btn-open-add-crypto-label">+ Catat Pemasukan Crypto</span>
-        </button>
-      </div>
-
-      <!-- 4. RIWAYAT PEMASUKAN EXCHANGE TABLE -->
-      <!-- 5. CRYPTO INCOMES TABLE -->
-      <div id="crypto-table-container" class="bg-white dark:bg-slate-800 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden transition-all">
-        <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
-          <h4 class="font-bold text-slate-900 dark:text-white text-sm">Riwayat Pemasukan Exchange</h4>
-          <span id="crypto-count-badge" class="text-xs text-slate-500 dark:text-slate-400">0 transaksi tercatat</span>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr class="border-b border-slate-100 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-750 text-slate-500 dark:text-slate-400 text-[11px] uppercase tracking-wider font-semibold">
-                <th class="py-3.5 px-6">Tanggal</th>
-                <th class="py-3.5 px-6">Exchange & Koin</th>
-                <th class="py-3.5 px-6">Sumber</th>
-                <th class="py-3.5 px-6 text-right">Jumlah USD</th>
-                <th class="py-3.5 px-6 text-right">Rate Kurs</th>
-                <th class="py-3.5 px-6 text-right">Hasil Konversi IDR</th>
-                <th class="py-3.5 px-6 text-center">Status</th>
-                <th class="py-3.5 px-6 text-center">Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="crypto-table-body" class="divide-y divide-slate-100 dark:divide-slate-700 text-sm">
-              <tr>
-                <td colspan="8" class="py-8 text-center text-slate-400">Memuat data crypto...</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- 5. BOX PENGATURAN KURS USD KE IDR (Diletakkan di bawah riwayat transaksi) -->
-      <!-- 2. BOX PENGATURAN KURS USD KE IDR -->
-      <div id="crypto-rate-section" class="bg-gradient-to-r from-amber-50/70 via-white to-blue-50/40 dark:from-slate-800 dark:via-slate-800 dark:to-slate-800 rounded-3xl p-5 md:p-6 border border-amber-200/80 dark:border-slate-700 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4 transition-all">
-        <div class="space-y-1">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-700 dark:text-amber-400 flex items-center justify-center">
-              <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
-            </div>
-            <h4 class="text-sm font-bold text-slate-900 dark:text-white">Atur Kurs Konversi Default (USD → IDR)</h4>
-          </div>
-          <p class="text-xs text-slate-500 dark:text-slate-400">
-            Kurs default yang otomatis digunakan saat mencatat transaksi crypto baru.
-          </p>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-2.5">
-          <div class="relative flex-1 sm:w-52">
-            <span class="absolute left-3.5 top-2.5 text-xs font-bold text-slate-400">Rp</span>
-            <input type="text" inputmode="numeric" id="crypto-page-rate-input" placeholder="16.250" oninput="formatRupiahInput(this)" class="w-full pl-10 pr-3 py-2 rounded-xl border border-amber-200 dark:border-slate-600 bg-white dark:bg-slate-900 text-sm font-bold text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:text-slate-400 disabled:cursor-not-allowed">
-          </div>
-          <button type="button" id="btn-crypto-save-rate" onclick="saveCryptoPageRate()" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs rounded-xl shadow-sm transition active:scale-95 flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed">
-            <i data-lucide="check" class="w-3.5 h-3.5"></i>
-            <span>Simpan Kurs</span>
-          </button>
-          <button type="button" id="btn-crypto-live-rate" onclick="fetchLatestLiveRate(true)" class="px-3.5 py-2 bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-bold text-xs rounded-xl transition flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed" title="Ambil kurs live USD/IDR dari API">
-            <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-amber-600 dark:text-amber-400"></i>
-            <span>Cek Kurs Live</span>
-          </button>
-        </div>
       </div>
 
     </div>
@@ -3194,6 +3200,9 @@
               sessionStorage.setItem('folio_session', JSON.stringify(sessionData));
               // Pastikan fitur crypto otomatis OFF saat selesai membuat akun baru
               AppState.settings.enable_crypto = false;
+              try {
+                localStorage.setItem('folio_crypto_enabled_' + res.user.username.toLowerCase(), 'false');
+              } catch (e) {}
               applyCryptoFeatureStatus(false);
               showApp(res.user);
               showToast(`Akun @${res.user.username} berhasil dibuat! Semua saldo mulai dari Rp 0.`, 'success');
@@ -3232,6 +3241,9 @@
           sessionStorage.setItem('folio_session', JSON.stringify(sessionData));
           // Pastikan fitur crypto otomatis OFF saat selesai membuat akun baru
           AppState.settings.enable_crypto = false;
+          try {
+            localStorage.setItem('folio_crypto_enabled_' + newUser.username.toLowerCase(), 'false');
+          } catch (e) {}
           applyCryptoFeatureStatus(false);
           showApp(newUser);
           showToast(`Akun @${newUser.username} berhasil dibuat! Semua saldo mulai dari Rp 0.`, 'success');
@@ -3390,6 +3402,17 @@
       AppState.dashboardData = data;
       AppState.settings = data.settings || AppState.settings;
 
+      // Pastikan preferensi crypto per user dihormati (default OFF untuk akun baru)
+      const activeUser = getActiveUsername();
+      const userCryptoSetting = localStorage.getItem('folio_crypto_enabled_' + activeUser);
+      if (userCryptoSetting !== null) {
+        AppState.settings.enable_crypto = (userCryptoSetting === 'true');
+      } else {
+        // Akun baru atau belum pernah atur: DEFAULT OFF
+        AppState.settings.enable_crypto = false;
+      }
+      applyCryptoFeatureStatus(AppState.settings.enable_crypto);
+
       // 1. Sinkronkan Riwayat Transaksi Lengkap
       if (data.allTransactions && Array.isArray(data.allTransactions)) {
         AppState.historyItems = data.allTransactions;
@@ -3430,7 +3453,6 @@
       }
 
       // 4. Sinkronkan Barang Impian (Wishlist) Lengkap & Auto-Sync
-      const activeUser = getActiveUsername();
       const serverWishlist = (data.wishlist && Array.isArray(data.wishlist)) ? data.wishlist : [];
       let localWishlist = [];
       try {
@@ -6251,14 +6273,45 @@
       const toggleEl = document.getElementById('crypto-feature-toggle');
       if (toggleEl) toggleEl.checked = isCryptoOn;
 
-      // Status pill & warning banner disembunyikan agar hanya sakelar yang jadi indikator
+      // Update deskripsi fitur
+      const descEl = document.getElementById('crypto-feature-desc');
+      if (descEl) {
+        descEl.textContent = isCryptoOn 
+          ? 'Fitur Aktif: Input pemasukan dari Binance, Bybit, OKX, Bitget dalam USD dengan konversi otomatis ke Rupiah.'
+          : 'Fitur Nonaktif: Modul crypto disembunyikan. Nyalakan sakelar untuk mencatat pemasukan exchange.';
+      }
+
+      // Sembunyikan atau tampilkan seluruh modul konten crypto (Total USD, Riwayat, Exchange, Kurs)
+      const contentWrapper = document.getElementById('crypto-content-wrapper');
+      if (contentWrapper) {
+        if (isCryptoOn) {
+          contentWrapper.classList.remove('hidden');
+          contentWrapper.style.display = 'block';
+        } else {
+          contentWrapper.classList.add('hidden');
+          contentWrapper.style.display = 'none';
+        }
+      }
+
+      // Sembunyikan atau tampilkan kartu keterangan saat OFF
+      const offState = document.getElementById('crypto-off-info-state');
+      if (offState) {
+        if (isCryptoOn) {
+          offState.classList.add('hidden');
+          offState.style.display = 'none';
+        } else {
+          offState.classList.remove('hidden');
+          offState.style.display = 'block';
+        }
+      }
+
+      // Status pill & warning banner lama dipastikan tersembunyi
       const statusPill = document.getElementById('crypto-status-pill');
       if (statusPill) statusPill.style.display = 'none';
-
       const offBanner = document.getElementById('crypto-off-warning-banner');
       if (offBanner) offBanner.classList.add('hidden');
 
-      // Update badge status di Dashboard Beranda & Sidebar Desktop (Point 3 Fix)
+      // Update badge status di Dashboard Beranda & Sidebar Desktop
       const quickBadge = document.getElementById('quick-crypto-badge');
       if (quickBadge) {
         if (isCryptoOn) {
@@ -6294,75 +6347,48 @@
       const btnCardLive = document.getElementById('btn-crypto-card-live');
       if (btnCardLive) btnCardLive.disabled = !isCryptoOn;
 
-      // Kontrol tombol + Catat Pemasukan Crypto (disabled jika OFF)
+      // Kontrol tombol + Catat Pemasukan Crypto
       const btnAdd = document.getElementById('btn-open-add-crypto');
       const btnAddLabel = document.getElementById('btn-open-add-crypto-label');
       if (btnAdd) {
+        btnAdd.disabled = !isCryptoOn;
         if (isCryptoOn) {
-          btnAdd.disabled = false;
           btnAdd.className = 'flex items-center gap-2 px-5 py-2.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow-md shadow-amber-500/20 transition self-end md:self-auto cursor-pointer';
           if (btnAddLabel) btnAddLabel.textContent = '+ Catat Pemasukan Crypto';
         } else {
-          btnAdd.disabled = true;
-          btnAdd.className = 'flex items-center gap-2 px-5 py-2.5 bg-slate-200 text-slate-400 font-bold text-xs rounded-xl shadow-none transition self-end md:self-auto cursor-not-allowed';
+          btnAdd.className = 'flex items-center gap-2 px-5 py-2.5 bg-slate-200 dark:bg-slate-700 text-slate-400 font-bold text-xs rounded-xl shadow-none transition self-end md:self-auto cursor-not-allowed';
           if (btnAddLabel) btnAddLabel.textContent = '+ Catat Pemasukan Crypto';
         }
       }
 
-      // Navigasi selalu tampil di sidebar desktop & mobile quick menu
-      const navCrypto = document.getElementById('nav-crypto');
-      const quickCrypto = document.getElementById('quick-menu-crypto');
-
-      if (navCrypto) {
-        navCrypto.style.display = 'flex';
-        navCrypto.classList.remove('hidden');
-      }
-      if (quickCrypto) {
-        quickCrypto.style.display = 'flex';
-        quickCrypto.classList.remove('hidden');
-      }
       lucide.createIcons();
     }
 
     function handleCryptoToggleSwitch(checked) {
       const activeUser = getActiveUsername();
-      showLoading(
-        checked ? 'Mengaktifkan Crypto...' : 'Menonaktifkan Crypto...',
-        checked ? 'Sedang mengaktifkan fitur Crypto Exchange...' : 'Sedang menonaktifkan fitur Crypto Exchange...'
-      );
-
       AppState.settings.enable_crypto = checked;
+
+      try {
+        localStorage.setItem('folio_crypto_enabled_' + activeUser, checked ? 'true' : 'false');
+      } catch (e) {}
+
+      applyCryptoFeatureStatus(checked);
+
+      if (checked) {
+        renderCryptoList();
+        showToast('Fitur Crypto Exchange diaktifkan (ON)!', 'success');
+      } else {
+        showToast('Fitur Crypto Exchange dinonaktifkan (OFF).', 'info');
+      }
 
       if (isGasEnvironment) {
         google.script.run
-          .withSuccessHandler(res => {
-            hideLoading();
-            if (res && res.success) {
-              applyCryptoFeatureStatus(checked);
-              renderCryptoList();
-              showToast(checked ? 'Fitur Crypto Exchange AKTIF dan siap digunakan!' : 'Fitur Crypto Exchange dinonaktifkan (OFF).', 'success');
-              loadAllAppData();
-            } else {
-              hideLoading();
-              const toggleEl = document.getElementById('crypto-feature-toggle');
-              if (toggleEl) toggleEl.checked = !checked;
-              showToast('Gagal mengubah status: ' + (res ? res.error : 'Unknown error'), 'error');
-            }
-          })
-          .withFailureHandler(err => {
-            hideLoading();
-            const toggleEl = document.getElementById('crypto-feature-toggle');
-            if (toggleEl) toggleEl.checked = !checked;
-            showToast('Error: ' + err.message, 'error');
-          })
+          .withSuccessHandler(res => {})
           .updateSettings({ enable_crypto: checked ? 'true' : 'false' }, activeUser);
       } else {
-        setTimeout(() => {
-          hideLoading();
-          applyCryptoFeatureStatus(checked);
-          renderCryptoList();
-          showToast(checked ? 'Fitur Crypto Exchange AKTIF (Mock)!' : 'Fitur Crypto Exchange dinonaktifkan (Mock).', 'success');
-        }, 400);
+        if (typeof window.DuitkuSupabase !== 'undefined' && typeof window.DuitkuSupabase.updateSettings === 'function') {
+          window.DuitkuSupabase.updateSettings({ enable_crypto: checked }, activeUser);
+        }
       }
     }
 
@@ -6447,10 +6473,18 @@
     }
 
     function loadCryptoView() {
-      const isCryptoOn = Boolean(AppState.settings.enable_crypto === true || AppState.settings.enable_crypto === 'true');
+      const activeUser = getActiveUsername();
+      const userCryptoSetting = localStorage.getItem('folio_crypto_enabled_' + activeUser);
+      let isCryptoOn = false;
+      if (userCryptoSetting !== null) {
+        isCryptoOn = (userCryptoSetting === 'true');
+      } else {
+        isCryptoOn = Boolean(AppState.settings.enable_crypto === true || AppState.settings.enable_crypto === 'true');
+      }
+      AppState.settings.enable_crypto = isCryptoOn;
       applyCryptoFeatureStatus(isCryptoOn);
 
-      const currentRate = AppState.settings.crypto_default_rate || 16250;
+      const currentRate = AppState.settings.crypto_default_rate || 18276;
       const pageRateInput = document.getElementById('crypto-page-rate-input');
       if (pageRateInput) {
         pageRateInput.value = formatRupiahNumber(currentRate);
@@ -6460,13 +6494,12 @@
         currentRateEl.textContent = `Rp ${formatNumber(currentRate)}`;
       }
 
-      // Jika data sudah tersedia di cache, langsung render tanpa request jaringan baru
+      // Jika data sudah tersedia di cache dan fitur aktif, langsung render tanpa request jaringan baru
       if (AppState.cryptoData && AppState.cryptoData.items) {
         renderCryptoList();
         return;
       }
 
-      const activeUser = getActiveUsername();
       const userCrypto = (MockDB.crypto || []).filter(c => (c.username || 'admin') === activeUser);
       if (userCrypto.length > 0 && !AppState.cryptoData) {
         AppState.cryptoData = {
@@ -6493,11 +6526,15 @@
       if (!AppState.cryptoData) return;
       const { items, summary } = AppState.cryptoData;
 
-      document.getElementById('crypto-stat-usd').textContent = `$ ${formatDecimal(summary.totalUsd, 2)}`;
-      document.getElementById('crypto-stat-idr').textContent = `Rp ${formatNumber(summary.totalIdr)}`;
-      document.getElementById('crypto-count-badge').textContent = `${items.length} transaksi tercatat`;
+      const usdEl = document.getElementById('crypto-stat-usd');
+      if (usdEl) usdEl.textContent = `$ ${formatDecimal(summary.totalUsd, 2)}`;
+      const idrEl = document.getElementById('crypto-stat-idr');
+      if (idrEl) idrEl.textContent = `Rp ${formatNumber(summary.totalIdr)}`;
+      const countEl = document.getElementById('crypto-count-badge');
+      if (countEl) countEl.textContent = `${items.length} transaksi tercatat`;
 
       const tbody = document.getElementById('crypto-table-body');
+      if (!tbody) return;
       tbody.innerHTML = '';
 
       if (items.length === 0) {
