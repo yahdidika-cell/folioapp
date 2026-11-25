@@ -1738,7 +1738,7 @@
                 <span id="btn-toggle-custom-cat-text">Kategori Baru</span>
               </button>
             </div>
-            <select id="modal-tx-category" required class="w-full max-w-full block px-3 py-2.5 rounded-xl border border-slate-200 text-sm bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 f-input-full font-medium" onchange="handleCategorySelectChange(this)">
+            <select id="modal-tx-category" required class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 font-medium" onchange="handleCategorySelectChange(this)">
               <!-- populated dynamically -->
             </select>
             <input type="text" id="modal-tx-custom-category" placeholder="Ketik nama kategori baru..." class="hidden w-full max-w-full px-3 py-2.5 rounded-xl border border-blue-400 text-sm bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 mt-1.5 f-input-full font-medium">
@@ -4050,6 +4050,9 @@
       if (kat.includes('crypto') || ket.includes('crypto') || ket.includes('binance') || ket.includes('bybit') || ket.includes('usdt')) {
         iconName = 'coins';
         iconBg = 'bg-amber-50 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-800/50';
+      } else if (kat.includes('saldo awal') || ket.includes('saldo awal') || kat.includes('modal awal') || ket.includes('modal awal')) {
+        iconName = 'sparkles';
+        iconBg = 'bg-teal-50 dark:bg-teal-900/40 text-teal-600 dark:text-teal-400 border border-teal-100 dark:border-teal-800/50';
       } else if (kat.includes('usaha') || kat.includes('bisnis') || kat.includes('freelance') || ket.includes('proyek')) {
         iconName = 'briefcase';
         iconBg = 'bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800/50';
@@ -7671,6 +7674,7 @@
 
     const DEFAULT_CATEGORIES = {
       pemasukan: [
+        { name: 'Saldo Awal' },
         { name: 'Gaji' },
         { name: 'Usaha / Bisnis' },
         { name: 'Crypto Exchange' },
@@ -7701,13 +7705,24 @@
     window._cachedCategories = (function() {
       try {
         const saved = JSON.parse(localStorage.getItem('folio_user_categories'));
-        if (saved && saved.pemasukan && saved.pengeluaran) return saved;
+        if (saved && saved.pemasukan && saved.pengeluaran) {
+          const hasSaldoAwal = saved.pemasukan.some(c => (typeof c === 'string' ? c : c.name).toLowerCase() === 'saldo awal');
+          if (!hasSaldoAwal) {
+            saved.pemasukan.unshift({ name: 'Saldo Awal' });
+            try { localStorage.setItem('folio_user_categories', JSON.stringify(saved)); } catch (e) {}
+          }
+          return saved;
+        }
       } catch (e) {}
       return DEFAULT_CATEGORIES;
     })();
 
     function populateCategorySelects(cats) {
       if (cats && cats.pemasukan && cats.pengeluaran) {
+        const hasSaldoAwal = cats.pemasukan.some(c => (typeof c === 'string' ? c : c.name).toLowerCase() === 'saldo awal');
+        if (!hasSaldoAwal) {
+          cats.pemasukan.unshift({ name: 'Saldo Awal' });
+        }
         window._cachedCategories = cats;
         try {
           localStorage.setItem('folio_user_categories', JSON.stringify(cats));
@@ -8028,7 +8043,7 @@
         installmentsData: { items: userInstallments, summary: cicilanSummary },
         cryptoData: { items: userCrypto, summary: calculateCryptoSummary(userCrypto) },
         categories: {
-          pemasukan: [{ name: 'Gaji' }, { name: 'Usaha' }, { name: 'Crypto Exchange' }, { name: 'Investasi' }, { name: 'Lainnya' }],
+          pemasukan: [{ name: 'Saldo Awal' }, { name: 'Gaji' }, { name: 'Usaha' }, { name: 'Crypto Exchange' }, { name: 'Investasi' }, { name: 'Lainnya' }],
           pengeluaran: [{ name: 'Makanan' }, { name: 'Tagihan' }, { name: 'Transport' }, { name: 'Belanja' }, { name: 'Hiburan' }, { name: 'Kesehatan' }, { name: 'Lainnya' }]
         }
       };

@@ -1459,7 +1459,7 @@
         wishlist: [],
         wishlistSummary: { totalTarget: 0, totalTerkumpul: 0, totalKurang: 0, countTercapai: 0, countProses: 0 },
         categories: {
-          pemasukan: [{ name: 'Gaji' }, { name: 'Usaha' }, { name: 'Lainnya' }],
+          pemasukan: [{ name: 'Saldo Awal' }, { name: 'Gaji' }, { name: 'Usaha' }, { name: 'Lainnya' }],
           pengeluaran: [{ name: 'Makanan' }, { name: 'Tagihan' }, { name: 'Lainnya' }]
         }
       };
