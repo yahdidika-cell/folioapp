@@ -5,7 +5,7 @@
  * ============================================================================
  */
 
-const CACHE_NAME = 'folio-cache-v3';
+const CACHE_NAME = 'folio-cache-v4';
 
 const PRECACHE_ASSETS = [
   './',

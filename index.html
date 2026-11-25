@@ -43,6 +43,15 @@
   </script>
   <script src="vendor/chart.umd.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/chart.js'"></script>
   <script src="vendor/lucide.min.js" onerror="this.onerror=null;this.src='https://unpkg.com/lucide@latest'"></script>
+  <script>
+    // Custom Official Bitcoin Icon Badge for Lucide
+    if (window.lucide && window.lucide.icons) {
+      window.lucide.icons.Bitcoin = [
+        ["circle", { cx: "12", cy: "12", r: "10" }],
+        ["path", { d: "M9.5 8h4a2 2 0 0 1 0 4h-4m0 0h4.5a2 2 0 0 1 0 4H9.5m0-8v8m2-10v2m0 8v2m2.5-12v2m0 8v2" }]
+      ];
+    }
+  </script>
 
   <script>
     tailwind.config = {
@@ -171,7 +180,7 @@
 
     <div class="hidden xl:flex items-center gap-3 absolute right-12 top-52 sm:top-60 p-3.5 rounded-2xl bg-slate-900/60 backdrop-blur-md border border-white/10 text-white shadow-2xl pointer-events-none transform rotate-3 transition hover:rotate-0">
       <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center">
-        <i data-lucide="coins" class="w-5 h-5"></i>
+        <i data-lucide="bitcoin" class="w-5 h-5"></i>
       </div>
       <div>
         <p class="text-[11px] text-slate-400 font-medium">Crypto & Multi-Wallet</p>
@@ -325,7 +334,7 @@
         <div class="bg-slate-900/70 backdrop-blur-md border border-white/10 rounded-2xl p-5 hover:border-amber-500/30 transition">
           <div class="flex items-center gap-3 mb-2.5">
             <div class="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0">
-              <i data-lucide="coins" class="w-5 h-5"></i>
+              <i data-lucide="bitcoin" class="w-5 h-5"></i>
             </div>
             <div>
               <h4 class="text-sm font-semibold text-white">Aset Crypto &amp; Kurs IDR</h4>
@@ -448,7 +457,7 @@
 
           <!-- Crypto Currency Nav Item (Dapat Diakses Langsung & Memiliki Indikator Status) -->
           <a href="javascript:void(0)" onclick="switchView('crypto')" id="nav-crypto" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all">
-            <i data-lucide="coins" class="w-4 h-4 shrink-0"></i>
+            <i data-lucide="bitcoin" class="w-4 h-4 shrink-0"></i>
             <span>Crypto Currency</span>
             <span id="nav-crypto-badge" class="hidden"></span>
           </a>
@@ -657,7 +666,7 @@
           <!-- 7. Crypto Currency -->
           <button onclick="switchView('crypto')" id="quick-menu-crypto" class="flex flex-col items-center group cursor-pointer">
             <div class="relative w-11 h-11 sm:w-12 sm:h-12 lg:w-11 lg:h-11 xl:w-12 xl:h-12 rounded-2xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-100/80 dark:border-blue-800/40 flex items-center justify-center mb-1.5 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:shadow-md group-hover:shadow-blue-500/20 group-active:scale-95 transition-all shadow-xs">
-              <i data-lucide="coins" class="w-5 h-5 stroke-[2.2]"></i>
+              <i data-lucide="bitcoin" class="w-5 h-5 stroke-[2.2]"></i>
               <span id="quick-crypto-badge" class="absolute -top-1 -right-1 text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-slate-500 text-white shadow-xs">
                 <i data-lucide="lock" class="w-2.5 h-2.5 inline"></i>
               </span>
@@ -695,15 +704,7 @@
               <span class="text-[11px] xl:text-xs font-semibold text-slate-700 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate max-w-full block">Pengaturan</span>
             </button>
 
-            <!-- 11. Tambah Transaksi Modal -->
-            <button onclick="openAddTransactionModal('Pemasukan')" class="flex flex-col items-center group cursor-pointer">
-              <div class="w-11 h-11 sm:w-12 sm:h-12 lg:w-11 lg:h-11 xl:w-12 xl:h-12 rounded-2xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-100/80 dark:border-blue-800/40 flex items-center justify-center mb-1.5 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:shadow-md group-hover:shadow-blue-500/20 group-active:scale-95 transition-all shadow-xs">
-                <i data-lucide="plus-circle" class="w-5 h-5 stroke-[2.2]"></i>
-              </div>
-              <span class="text-[11px] xl:text-xs font-semibold text-slate-700 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate max-w-full block">Input Transaksi</span>
-            </button>
-
-            <!-- 12. Cadangkan Data (Backup) -->
+            <!-- 11. Cadangkan Data (Backup) -->
             <button onclick="exportBackupData()" class="flex flex-col items-center group cursor-pointer">
               <div class="w-11 h-11 sm:w-12 sm:h-12 lg:w-11 lg:h-11 xl:w-12 xl:h-12 rounded-2xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-100/80 dark:border-blue-800/40 flex items-center justify-center mb-1.5 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 group-hover:shadow-md group-hover:shadow-blue-500/20 group-active:scale-95 transition-all shadow-xs">
                 <i data-lucide="download" class="w-5 h-5 stroke-[2.2]"></i>
@@ -1155,7 +1156,7 @@
       <div class="bg-white dark:bg-slate-800 rounded-3xl p-5 md:p-6 border border-slate-100 dark:border-slate-700 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div class="flex items-center gap-3.5">
           <div class="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
-            <i data-lucide="coins" class="w-6 h-6"></i>
+            <i data-lucide="bitcoin" class="w-6 h-6"></i>
           </div>
           <div>
             <div class="flex items-center gap-2.5 flex-wrap">
@@ -1203,7 +1204,7 @@
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/20 text-white">Akumulasi Semua Exchange</span>
               </div>
               <div class="w-8 h-8 rounded-xl bg-white/20 flex items-center justify-center">
-                <i data-lucide="coins" class="w-4 h-4 text-white"></i>
+                <i data-lucide="bitcoin" class="w-4 h-4 text-white"></i>
               </div>
             </div>
             <div class="my-1">
@@ -1319,6 +1320,24 @@
     </div>
 
     <div id="view-stats" class="hidden space-y-6">
+
+      <!-- Header Bar Statistik: Pilihan Periode Bulan -->
+      <div class="bg-white dark:bg-slate-800 p-4 sm:p-5 rounded-3xl border border-slate-100 dark:border-slate-700 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+            <i data-lucide="calendar" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">Pilihan Periode Bulan</h3>
+            <p id="stats-period-subtitle" class="text-xs text-slate-400 dark:text-slate-500">Pilih bulan untuk melihat rincian statistik &amp; pengeluaran</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <select id="stats-month-select" onchange="onStatsMonthChanged(this.value)" class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 text-xs sm:text-sm font-bold rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500/20 cursor-pointer shadow-xs w-full sm:w-auto">
+            <!-- Pilihan bulan dinamis -->
+          </select>
+        </div>
+      </div>
 
       <!-- Metrics Row -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -2155,7 +2174,7 @@
       <div class="flex items-center justify-between pb-4 border-b border-slate-100">
         <div class="flex items-center gap-2">
           <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
-            <i data-lucide="coins" class="w-4 h-4"></i>
+            <i data-lucide="bitcoin" class="w-4 h-4"></i>
           </div>
           <h3 class="text-lg font-bold text-slate-900">Input Pemasukan Crypto Exchange</h3>
         </div>
@@ -2503,7 +2522,7 @@
 
             <button onclick="closeModal('modal-all-features'); switchView('crypto')" class="p-2.5 sm:p-3 rounded-2xl bg-slate-50 dark:bg-slate-750/70 border border-slate-100 dark:border-slate-700 hover:border-blue-300 transition flex items-center gap-2.5 sm:gap-3 text-left">
               <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-amber-100/70 dark:bg-amber-900/40 text-amber-600 flex items-center justify-center shrink-0">
-                <i data-lucide="coins" class="w-4 h-4"></i>
+                <i data-lucide="bitcoin" class="w-4 h-4"></i>
               </div>
               <span class="text-xs font-bold text-slate-800 dark:text-white truncate">Crypto Currency</span>
             </button>
@@ -4055,7 +4074,7 @@
       const domp = (tx.dompet || '').toLowerCase();
 
       if (kat.includes('crypto') || ket.includes('crypto') || ket.includes('binance') || ket.includes('bybit') || ket.includes('usdt')) {
-        iconName = 'coins';
+        iconName = 'bitcoin';
         iconBg = 'bg-amber-50 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-amber-800/50';
       } else if (kat.includes('saldo awal') || ket.includes('saldo awal') || kat.includes('modal awal') || ket.includes('modal awal')) {
         iconName = 'sparkles';
@@ -7019,18 +7038,138 @@
     }
 
     // =========================================================================
-    // VIEW STATISTIK (#4)
+    // VIEW STATISTIK (#4) DENGAN FITUR PILIHAN BULAN
     // =========================================================================
-    function loadStatsView() {
+    function initStatsMonthSelector() {
+      const select = document.getElementById('stats-month-select');
+      if (!select) return;
+
+      const monthsSet = new Set();
+      const allTx = (AppState.historyItems && AppState.historyItems.length > 0)
+        ? AppState.historyItems
+        : ((AppState.dashboardData && AppState.dashboardData.allTransactions) || MockDB.transactions || []);
+
+      allTx.forEach(t => {
+        if (t.tanggal) {
+          const ym = String(t.tanggal).slice(0, 7);
+          if (/^\d{4}-\d{2}$/.test(ym)) monthsSet.add(ym);
+        }
+      });
+
+      // Tambahkan bulan berjalan dan 5 bulan ke belakang
+      const now = new Date();
+      for (let i = 0; i < 6; i++) {
+        const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+        const ym = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+        monthsSet.add(ym);
+      }
+
+      const sortedMonths = Array.from(monthsSet).sort().reverse();
+      const currentSelection = AppState.statsSelectedMonth || sortedMonths[0];
+      AppState.statsSelectedMonth = currentSelection;
+
+      select.innerHTML = '';
+
+      const namaBulanIndo = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+      sortedMonths.forEach(ym => {
+        const parts = ym.split('-');
+        const y = parts[0];
+        const m = parts[1];
+        const opt = document.createElement('option');
+        opt.value = ym;
+        const monthName = namaBulanIndo[parseInt(m, 10) - 1] || m;
+        opt.textContent = `${monthName} ${y}`;
+        if (ym === currentSelection) opt.selected = true;
+        select.appendChild(opt);
+      });
+
+      const optAll = document.createElement('option');
+      optAll.value = 'ALL';
+      optAll.textContent = 'Semua Periode (Akumulasi)';
+      if (currentSelection === 'ALL') optAll.selected = true;
+      select.appendChild(optAll);
+    }
+
+    function onStatsMonthChanged(val) {
+      AppState.statsSelectedMonth = val;
+      loadStatsView(val);
+    }
+
+    function loadStatsView(targetMonth) {
       if (!AppState.dashboardData) return;
       const data = AppState.dashboardData;
 
-      const totalIn = typeof data.pemasukanBulanIni === 'object' && data.pemasukanBulanIni !== null 
-        ? (Number(data.pemasukanBulanIni.total) || 0) 
-        : (Number(data.pemasukanBulanIni) || 0);
-      const totalOut = typeof data.pengeluaranBulanIni === 'object' && data.pengeluaranBulanIni !== null 
-        ? (Number(data.pengeluaranBulanIni.total) || 0) 
-        : (Number(data.pengeluaranBulanIni) || 0);
+      initStatsMonthSelector();
+      const select = document.getElementById('stats-month-select');
+      if (select && select.value) {
+        targetMonth = targetMonth || select.value;
+      }
+      targetMonth = targetMonth || AppState.statsSelectedMonth || '2026-11';
+      AppState.statsSelectedMonth = targetMonth;
+      if (select && select.value !== targetMonth) select.value = targetMonth;
+
+      // Update subtitle period
+      const subtitle = document.getElementById('stats-period-subtitle');
+      const namaBulanIndo = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+      if (subtitle) {
+        if (targetMonth === 'ALL') {
+          subtitle.textContent = 'Menampilkan statistik akumulasi seluruh periode transaksi';
+        } else {
+          const parts = targetMonth.split('-');
+          const y = parts[0];
+          const m = parts[1];
+          const mName = namaBulanIndo[parseInt(m, 10) - 1] || m;
+          subtitle.textContent = `Menampilkan rincian statistik & pengeluaran ${mName} ${y}`;
+        }
+      }
+
+      // Ambil transaksi user
+      const allTx = (AppState.historyItems && AppState.historyItems.length > 0)
+        ? AppState.historyItems
+        : ((data.allTransactions && data.allTransactions.length > 0) ? data.allTransactions : (data.transaksiTerbaru || MockDB.transactions || []));
+
+      const isAll = (targetMonth === 'ALL');
+      const monthTx = isAll ? allTx : allTx.filter(t => t.tanggal && String(t.tanggal).startsWith(targetMonth));
+
+      let totalIn = 0;
+      let totalOut = 0;
+      let cryptoInIdr = 0;
+      const catMap = {};
+
+      if (monthTx.length > 0) {
+        monthTx.forEach(t => {
+          const val = Number(t.jumlah) || 0;
+          const tipe = t.tipe || 'Pengeluaran';
+          if (tipe === 'Pemasukan') {
+            totalIn += val;
+            const katLower = (t.kategori || '').toLowerCase();
+            const ketLower = (t.keterangan || '').toLowerCase();
+            if (katLower.includes('crypto') || ketLower.includes('crypto') || ketLower.includes('usdt')) {
+              cryptoInIdr += val;
+            }
+          } else {
+            totalOut += val;
+            const cName = t.kategori || 'Lainnya';
+            catMap[cName] = (catMap[cName] || 0) + val;
+          }
+        });
+      } else if (!isAll && targetMonth === '2026-11') {
+        // Fallback ke dashboardData jika bulan berjalan
+        totalIn = typeof data.pemasukanBulanIni === 'object' && data.pemasukanBulanIni !== null 
+          ? (Number(data.pemasukanBulanIni.total) || 0) 
+          : (Number(data.pemasukanBulanIni) || 0);
+        totalOut = typeof data.pengeluaranBulanIni === 'object' && data.pengeluaranBulanIni !== null 
+          ? (Number(data.pengeluaranBulanIni.total) || 0) 
+          : (Number(data.pengeluaranBulanIni) || 0);
+        if (data.pengeluaranPerKategori && typeof data.pengeluaranPerKategori === 'object') {
+          if (Array.isArray(data.pengeluaranPerKategori)) {
+            data.pengeluaranPerKategori.forEach(c => { catMap[c.kategori] = c.jumlah; });
+          } else {
+            Object.assign(catMap, data.pengeluaranPerKategori);
+          }
+        }
+      }
 
       // Savings Rate
       let savingsRate = 0;
@@ -7040,26 +7179,32 @@
       const savEl = document.getElementById('stat-savings-rate');
       if (savEl) savEl.textContent = `${savingsRate}%`;
 
-      // Daily Average (Bulan berjalan hari ke-N)
-      const currentDay = new Date().getDate() || 1;
-      const dailyAvg = Math.round(totalOut / currentDay);
+      // Daily Average
+      let daysCount = 30;
+      if (!isAll && targetMonth) {
+        const parts = targetMonth.split('-');
+        const y = parseInt(parts[0], 10);
+        const m = parseInt(parts[1], 10);
+        const now = new Date();
+        if (now.getFullYear() === y && (now.getMonth() + 1) === m) {
+          daysCount = now.getDate() || 1;
+        } else {
+          daysCount = new Date(y, m, 0).getDate() || 30;
+        }
+      }
+      const dailyAvg = Math.round(totalOut / Math.max(daysCount, 1));
       const dailyEl = document.getElementById('stat-daily-expense');
       if (dailyEl) dailyEl.textContent = `Rp ${formatNumber(dailyAvg)}`;
 
       // Normalize Categories List
-      let categories = [];
-      if (Array.isArray(data.pengeluaranPerKategori)) {
-        categories = data.pengeluaranPerKategori;
-      } else if (data.pengeluaranPerKategori && typeof data.pengeluaranPerKategori === 'object') {
-        const catPalette = ['#1e293b', '#2563eb', '#06b6d4', '#93c5fd', '#8b5cf6', '#10b981', '#f59e0b', '#ec4899', '#64748b'];
-        let pIdx = 0;
-        categories = Object.entries(data.pengeluaranPerKategori).map(([k, v]) => ({
-          kategori: k,
-          jumlah: Number(v) || 0,
-          persentase: totalOut > 0 ? Math.round(((Number(v) || 0) / totalOut) * 100) : 0,
-          color: catPalette[(pIdx++) % catPalette.length]
-        })).sort((a, b) => b.jumlah - a.jumlah);
-      }
+      const catPalette = ['#2563eb', '#06b6d4', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#f43f5e', '#64748b'];
+      let pIdx = 0;
+      const categories = Object.entries(catMap).map(([k, v]) => ({
+        kategori: k,
+        jumlah: Number(v) || 0,
+        persentase: totalOut > 0 ? Math.round(((Number(v) || 0) / totalOut) * 100) : 0,
+        color: catPalette[(pIdx++) % catPalette.length]
+      })).sort((a, b) => b.jumlah - a.jumlah);
 
       // Top Expense Category
       const topCatEl = document.getElementById('stat-top-expense-cat');
@@ -7075,9 +7220,13 @@
 
       // Crypto Contribution
       let cryptoContrib = 0;
-      const cryptoSummary = data.cryptoSummary || (data.cryptoData ? data.cryptoData.summary : null);
-      if (cryptoSummary && cryptoSummary.totalIdr && totalIn > 0) {
-        cryptoContrib = Math.round((cryptoSummary.totalIdr / totalIn) * 100);
+      if (cryptoInIdr > 0 && totalIn > 0) {
+        cryptoContrib = Math.round((cryptoInIdr / totalIn) * 100);
+      } else {
+        const cryptoSummary = data.cryptoSummary || (data.cryptoData ? data.cryptoData.summary : null);
+        if (cryptoSummary && cryptoSummary.totalIdr && totalIn > 0 && (!targetMonth || targetMonth === '2026-11' || isAll)) {
+          cryptoContrib = Math.round((cryptoSummary.totalIdr / totalIn) * 100);
+        }
       }
       const cryptoEl = document.getElementById('stat-crypto-contrib');
       if (cryptoEl) cryptoEl.textContent = `${cryptoContrib}%`;
@@ -7578,57 +7727,54 @@
 
       const isDashboard = (viewName === 'dashboard');
       const isHistory = (viewName === 'history');
-      const showLogoAndGreeting = isDashboard || isHistory;
 
-      if (showLogoAndGreeting) {
-        // DI BERANDA / DASBOR & PEMASUKAN DAN PENGELUARAN (RIWAYAT):
-        // 1. Tampilkan logo dan nama profil di mobile (Point 3)
+      if (isDashboard) {
+        // DI BERANDA / DASBOR:
+        // 1. Tampilkan logo dan nama profil di mobile
         if (headerUserInfo) headerUserInfo.classList.remove('hidden');
-        // 2. Sembunyikan tombol kembali (karena halaman utama/menu tab)
+        // 2. Sembunyikan tombol kembali
         if (btnBack) btnBack.classList.add('hidden');
         // 3. Judul di desktop
         if (headerTitleBox) headerTitleBox.className = 'hidden md:block';
         if (titleEl) {
           titleEl.className = 'text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white';
-          titleEl.textContent = isDashboard ? 'Dasbor' : 'Pemasukan & Pengeluaran';
+          titleEl.textContent = 'Dasbor';
         }
         if (subtitleEl) {
           subtitleEl.className = 'text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 mt-0.5';
-          subtitleEl.textContent = isDashboard 
-            ? ('Ringkasan keuangan ' + (AppState.selectedMonth ? formatMonthYear(AppState.selectedMonth) : 'November 2026'))
-            : 'Riwayat transaksi kas pemasukan dan pengeluaran';
+          subtitleEl.textContent = 'Ringkasan keuangan ' + (AppState.selectedMonth ? formatMonthYear(AppState.selectedMonth) : 'November 2026');
         }
         // 4. Tampilkan tombol refresh dan tambah transaksi
         if (headerRefreshBtn) headerRefreshBtn.style.display = '';
         if (headerAddTxBtn) headerAddTxBtn.style.display = '';
 
-        if (isDashboard) {
-          renderDashboardWishlist();
-          updateWishlistNavBadge();
-        } else if (isHistory) {
-          loadHistoryView();
-        }
+        renderDashboardWishlist();
+        updateWishlistNavBadge();
       } else {
-        // DI SUB-FITUR (Crypto, Statistik, Akun/Pengaturan, Utang Piutang, Cicilan, Barang Impian):
-        // 1. HILANGKAN logo dan nama sapaan di mobile (Point 1 & Point 2)
+        // DI SUB-FITUR & RIWAYAT (Point 1: Riwayat mobile hanya kembali, refresh, dan online):
+        // 1. HILANGKAN logo dan nama sapaan di mobile
         if (headerUserInfo) headerUserInfo.classList.add('hidden');
-        // 2. TAMPILKAN tombol kembali (back) di kiri atas (Point 1 & Point 2)
+        // 2. TAMPILKAN tombol kembali (back) di kiri atas
         if (btnBack) btnBack.classList.remove('hidden');
         // 3. Tampilkan judul halaman secara ringkas dan rapi di mobile & desktop
         if (headerTitleBox) headerTitleBox.className = 'flex flex-col min-w-0';
         if (titleEl) titleEl.className = 'text-base sm:text-2xl font-bold text-slate-900 dark:text-white truncate';
         if (subtitleEl) subtitleEl.className = 'text-xs text-slate-500 dark:text-slate-400 truncate hidden xs:block';
 
-        // 4. Sembunyikan tombol tambah transaksi header di sub-fitur
+        // 4. Sembunyikan tombol tambah transaksi header di sub-fitur & riwayat
         if (headerAddTxBtn) headerAddTxBtn.style.display = 'none';
 
-        // 5. Tombol refresh: di crypto dan settings disembunyikan; di wishlist, dasbor, dan sub-fitur lain tetap aktif
+        // 5. Tombol refresh: di crypto dan settings disembunyikan; di riwayat, statistik, dan sub-fitur lain tetap aktif
         if (headerRefreshBtn) {
           headerRefreshBtn.style.display = (viewName === 'crypto' || viewName === 'settings') ? 'none' : '';
         }
 
         // Set judul & muat data masing-masing view
-        if (viewName === 'wishlist') {
+        if (isHistory) {
+          if (titleEl) titleEl.textContent = 'Riwayat Transaksi';
+          if (subtitleEl) subtitleEl.textContent = 'Riwayat transaksi kas pemasukan dan pengeluaran';
+          loadHistoryView();
+        } else if (viewName === 'wishlist') {
           if (titleEl) titleEl.textContent = 'Barang Impian';
           if (subtitleEl) subtitleEl.textContent = 'Target tabungan barang impian Anda';
           loadWishlistView();
@@ -7696,15 +7842,11 @@
       pengeluaran: [
         { name: 'Makanan & Minuman' },
         { name: 'Belanja Kebutuhan' },
-        { name: 'Transportasi & Bensin' },
+        { name: 'Transportasi' },
         { name: 'Tagihan & Utilitas' },
-        { name: 'Sewa & Tempat Tinggal' },
         { name: 'Hiburan & Hobi' },
-        { name: 'Kesehatan & Medis' },
-        { name: 'Pendidikan & Kursus' },
+        { name: 'Kesehatan' },
         { name: 'Cicilan & Utang' },
-        { name: 'Keluarga & Anak' },
-        { name: 'Sedekah & Amal' },
         { name: 'Lainnya' }
       ]
     };
@@ -7716,8 +7858,11 @@
           const hasSaldoAwal = saved.pemasukan.some(c => (typeof c === 'string' ? c : c.name).toLowerCase() === 'saldo awal');
           if (!hasSaldoAwal) {
             saved.pemasukan.unshift({ name: 'Saldo Awal' });
-            try { localStorage.setItem('folio_user_categories', JSON.stringify(saved)); } catch (e) {}
           }
+          if (saved.pengeluaran.length > 9) {
+            saved.pengeluaran = DEFAULT_CATEGORIES.pengeluaran;
+          }
+          try { localStorage.setItem('folio_user_categories', JSON.stringify(saved)); } catch (e) {}
           return saved;
         }
       } catch (e) {}
@@ -7729,6 +7874,9 @@
         const hasSaldoAwal = cats.pemasukan.some(c => (typeof c === 'string' ? c : c.name).toLowerCase() === 'saldo awal');
         if (!hasSaldoAwal) {
           cats.pemasukan.unshift({ name: 'Saldo Awal' });
+        }
+        if (cats.pengeluaran.length > 9) {
+          cats.pengeluaran = DEFAULT_CATEGORIES.pengeluaran;
         }
         window._cachedCategories = cats;
         try {

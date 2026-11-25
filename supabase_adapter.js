@@ -1410,19 +1410,11 @@
           pengeluaran: [
             { name: 'Makanan & Minuman' },
             { name: 'Belanja Kebutuhan' },
-            { name: 'Transportasi & Bensin' },
+            { name: 'Transportasi' },
             { name: 'Tagihan & Utilitas' },
-            { name: 'Sewa & Tempat Tinggal' },
             { name: 'Hiburan & Hobi' },
-            { name: 'Kesehatan & Medis' },
-            { name: 'Pendidikan & Kursus' },
-            { name: 'Keluarga & Anak' },
-            { name: 'Sedekah & Donasi' },
+            { name: 'Kesehatan' },
             { name: 'Cicilan & Utang' },
-            { name: 'Investasi & Tabungan' },
-            { name: 'Pajak & Biaya Admin' },
-            { name: 'Perawatan Pribadi' },
-            { name: 'Elektronik & Gadget' },
             { name: 'Lainnya' }
           ]
         }
