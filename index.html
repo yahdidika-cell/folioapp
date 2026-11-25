@@ -16,13 +16,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Folio - Semua keuanganmu, kami yang atur.</title>
   
-  <!-- Local Vendor Styles & Fonts (100% Offline-Ready) -->
+  <!-- Local Vendor Styles & Fonts (100% Offline-Ready with CDN Fallback) -->
   <link rel="stylesheet" href="vendor/fonts.css">
   
-  <!-- Local Vendor Scripts (100% Offline-Ready) -->
-  <script src="vendor/tailwind.js"></script>
-  <script src="vendor/chart.umd.js"></script>
-  <script src="vendor/lucide.min.js"></script>
+  <!-- Critical Base Inline Styles to prevent unstyled flash -->
+  <style>
+    #fi-intro { position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100vw; height: 100vh; z-index: 99999; background: #070e1c; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    #fi-intro .fi-tile { width: 2.1em; height: 2.1em; max-width: 140px; max-height: 140px; display: block; }
+  </style>
+
+  <!-- Local Vendor Scripts (100% Offline-Ready with CDN Fallback) -->
+  <script src="vendor/tailwind.js" onerror="this.onerror=null;this.src='https://cdn.tailwindcss.com'"></script>
+  <script src="vendor/chart.umd.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/chart.js'"></script>
+  <script src="vendor/lucide.min.js" onerror="this.onerror=null;this.src='https://unpkg.com/lucide@latest'"></script>
 
   <script>
     tailwind.config = {
